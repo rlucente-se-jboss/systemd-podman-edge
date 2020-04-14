@@ -1,5 +1,5 @@
 
-module mine 1.0;
+module local 1.0;
 
 require {
 	type mysqld_db_t;
