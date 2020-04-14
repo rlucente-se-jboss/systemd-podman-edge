@@ -1,16 +1,16 @@
 
-module local 1.0;
+module mine 1.0;
 
 require {
-	type var_lib_t;
+	type mysqld_db_t;
 	type container_t;
-	class dir { add_name create remove_name setattr write };
+	class dir { add_name create read remove_name rmdir setattr write };
 	class file { create lock map open read rename unlink write };
 }
 
 #============= container_t ==============
-allow container_t var_lib_t:dir { add_name create remove_name setattr write };
+allow container_t mysqld_db_t:dir { add_name create read remove_name rmdir setattr write };
 
 #!!!! This avc can be allowed using the boolean 'domain_can_mmap_files'
-allow container_t var_lib_t:file map;
-allow container_t var_lib_t:file { create lock open read rename unlink write };
+allow container_t mysqld_db_t:file map;
+allow container_t mysqld_db_t:file { create lock open read rename unlink write };
