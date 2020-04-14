@@ -20,7 +20,6 @@ sudo chmod a+rwx /var/lib/mysql/data
 #
 # modify SELinux policy to allow access to /var/lib/mysql/data
 #
-sudo ausearch -c mysqld | audit2allow -M local
 checkmodule -M -m -o local.mod local.te
 semodule_package -o local.pp -m local.mod
 sudo semodule -i local.pp
