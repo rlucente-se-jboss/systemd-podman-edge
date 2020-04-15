@@ -5,7 +5,7 @@ require {
 	type mysqld_db_t;
 	type container_t;
 	class dir { add_name create read remove_name rmdir setattr write };
-	class file { create lock map open read rename unlink write };
+	class file { append create getattr lock map open read rename setattr unlink write };
 }
 
 #============= container_t ==============
@@ -13,4 +13,4 @@ allow container_t mysqld_db_t:dir { add_name create read remove_name rmdir setat
 
 #!!!! This avc can be allowed using the boolean 'domain_can_mmap_files'
 allow container_t mysqld_db_t:file map;
-allow container_t mysqld_db_t:file { create lock open read rename unlink write };
+allow container_t mysqld_db_t:file { append create getattr lock open read rename setattr unlink write };
