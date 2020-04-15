@@ -14,13 +14,12 @@ podman pull quay.io/rlucente-se-jboss/myphp:latest
 sudo firewall-cmd --add-port 8080/tcp --permanent
 sudo firewall-cmd --reload
 
-sudo rm -fr /var/lib/mysql
 sudo mkdir -p /var/lib/mysql/data
 sudo chmod a+rwx /var/lib/mysql/data
 sudo restorecon -vFr /var/lib/mysql
 
 #
-# modify SELinux policy to allow access to /var/lib/mysql/data
+# modify SELinux policy to allow container access to /var/lib/mysql/data
 #
 checkmodule -M -m -o local.mod local.te
 semodule_package -o local.pp -m local.mod
