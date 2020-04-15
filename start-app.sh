@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# replace with your credentials for RHSM
+# replace with your credentials for the Red Hat customer portal
 #
 USERNAME=
 PASSWORD=
