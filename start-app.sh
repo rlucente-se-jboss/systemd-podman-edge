@@ -11,20 +11,6 @@ podman login --username=$USERNAME --password=$PASSWORD registry.redhat.io
 podman pull registry.redhat.io/rhscl/mariadb-102-rhel7:latest
 podman pull quay.io/rlucente-se-jboss/myphp:latest
 
-sudo firewall-cmd --add-port 8080/tcp --permanent
-sudo firewall-cmd --reload
-
-sudo mkdir -p /var/lib/mysql/data
-sudo chmod a+rwx /var/lib/mysql/data
-sudo restorecon -vFr /var/lib/mysql
-
-#
-# modify SELinux policy to allow container access to /var/lib/mysql/data
-#
-checkmodule -M -m -o local.mod local.te
-semodule_package -o local.pp -m local.mod
-sudo semodule -i local.pp
-
 #
 # enable services and start as local user
 #

@@ -47,3 +47,22 @@ dnf -y install cmake lsof man-pages man-pages-overrides systemd-devel
 
 dnf -y clean all
 
+#
+# open firewall ports
+#
+firewall-cmd --add-port 8080/tcp --permanent
+firewall-cmd --reload
+
+#
+# set up persistent data
+#
+mkdir -p /var/lib/mysql/data
+chmod a+rwx /var/lib/mysql/data
+
+#
+# modify SELinux policy to allow container access to /var/lib/mysql/data
+#
+restorecon -vFr /var/lib/mysql
+checkmodule -M -m -o local.mod local.te
+semodule_package -o local.pp -m local.mod
+sudo semodule -i local.pp
