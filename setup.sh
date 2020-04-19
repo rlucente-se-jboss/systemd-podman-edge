@@ -43,7 +43,7 @@ subscription-manager repos \
 dnf -y update
 
 dnf -y groupinstall 'Development Tools' 'Container Management'
-dnf -y install cmake lsof man-pages man-pages-overrides systemd-devel
+dnf -y install cmake lsof man-pages man-pages-overrides systemd-devel udica
 
 dnf -y clean all
 
@@ -54,7 +54,7 @@ firewall-cmd --add-port 8080/tcp --permanent
 firewall-cmd --reload
 
 #
-# set up persistent data
+# create persistent data directory for mariadb
 #
 mkdir -p /var/lib/mysql/data
 chmod a+rwx /var/lib/mysql/data
@@ -63,6 +63,4 @@ chmod a+rwx /var/lib/mysql/data
 # modify SELinux policy to allow container access to /var/lib/mysql/data
 #
 restorecon -vFr /var/lib/mysql
-checkmodule -M -m -o local.mod local.te
-semodule_package -o local.pp -m local.mod
-sudo semodule -i local.pp
+semodule -v -i mariadb_container.cil /usr/share/udica/templates/{base_container.cil,net_container.cil}

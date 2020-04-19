@@ -4,7 +4,7 @@ Description=MyPHP as Container in SystemD
 [Service]
 Restart=on-failure
 ExecStartPre=/usr/bin/rm -f /%t/%n-pid /%t/%n-cid
-ExecStart=/usr/bin/podman run --conmon-pidfile  /%t/%n-pid  --cidfile /%t/%n-cid -d -v /var/lib/mysql/data:/var/lib/mysql/data -p 3306:3306 -e MYSQL_USER=myphp -e MYSQL_PASSWORD=myphp -e MYSQL_DATABASE=myphp registry.redhat.io/rhscl/mariadb-102-rhel7:latest
+ExecStart=/usr/bin/podman run --conmon-pidfile  /%t/%n-pid  --cidfile /%t/%n-cid -d -v /var/lib/mysql/data:/var/lib/mysql/data --security-opt label=type:mariadb_container.process -p 3306:3306 -e MYSQL_USER=myphp -e MYSQL_PASSWORD=myphp -e MYSQL_DATABASE=myphp registry.redhat.io/rhscl/mariadb-102-rhel7:latest
 ExecStop=/usr/bin/sh -c "/usr/bin/podman rm -f `cat /%t/%n-cid`"
 KillMode=none
 Type=forking

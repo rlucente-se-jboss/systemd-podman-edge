@@ -1,0 +1,8 @@
+(block mariadb_container
+    (blockinherit container)
+    (blockinherit restricted_net_container)
+    (allow process mysqld_port_t ( tcp_socket (  name_bind ))) 
+    (allow process mysqld_db_t ( dir ( add_name create read remove_name rmdir setattr write getattr lock search ioctl open ))) 
+    (allow process mysqld_db_t ( file ( append create getattr lock map open read rename setattr unlink write ioctl ))) 
+    (allow process mysqld_db_t ( sock_file ( getattr read write append open  ))) 
+)
