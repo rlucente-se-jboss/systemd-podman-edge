@@ -9,8 +9,8 @@ This example uses the following images:
 * registry.redhat.io/rhscl/mariadb-102-rhel7:10.2
 
 ## Setup
-Install a base image for RHEL 8 and make sure that the hostname is
-configured. To set the hostname post installation you can simply
+Install a minimal instance of RHEL 8 and make sure that the hostname
+is configured. To set the hostname post installation you can simply
 use the command:
 
     sudo hostnamectl set-hostname NAME
@@ -54,8 +54,8 @@ running. The result is the `mariadb_container.cil` file that's
 already included in this repository.
 
 *NB: The mariadb_container.cil file needed to be tweaked to add
-permissions for this example to work. If you generate the file,
-please compare to what is in this repository.*
+permissions for this example to work. If you generate the file
+yourself, please compare to what is in this repository.*
 
 ## Run the containers
 Start the PHP and MariaDB containers using the command:
