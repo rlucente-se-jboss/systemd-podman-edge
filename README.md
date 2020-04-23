@@ -30,7 +30,7 @@ site.
 The custom SELinux policy included in this git repository was
 generated via [Udica](https://github.com/containers/udica).  Udica
 provides a way to generate custom SELinux policy for a targeted
-class of containers rather than say permitting all container with
+class of containers rather than say permitting all containers with
 label container_t to access a specific host resource. In this
 example, I have a MariaDB database that will bind mount and persist
 data to `/var/lib/mysql/data` on the host. I only want the specific
