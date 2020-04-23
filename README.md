@@ -28,11 +28,19 @@ site.
 
 ## Using Udica to create policy
 The custom SELinux policy included in this git repository was
-generated via [Udica](https://github.com/containers/udica). The
-commands listed in this section are illustrative of what needs to
-be done to generate the custom SELinux policy. The setup.sh script
-above already uses the existing policy file to enable the mariadb
-container to persist data.
+generated via [Udica](https://github.com/containers/udica).  Udica
+provides a way to generate custom SELinux policy for a targeted
+class of containers rather than say permitting all container with
+label container_t to access a specific host resource. In this
+example, I have a MariaDB database that will bind mount and persist
+data to `/var/lib/mysql/data` on the host. I only want the specific
+class of MariaDB containers to have access to that host directory.
+
+The commands listed in this section are illustrative of what needs
+to be done to generate the custom SELinux policy, but the setup.sh
+script above already uses the existing policy file to enable the
+mariadb container to persist data. If you want to create the SELinux
+policy again, please do the following.
 
 First, login to the desired container registry:
 
