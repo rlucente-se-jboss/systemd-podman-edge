@@ -43,7 +43,16 @@ script above already uses the existing policy file,
 data. If you want to create the SELinux policy again, please do the
 following.
 
-First, login to the desired container registry:
+First, create the target directory on the host that the container
+can access and properly set its SELinux context:
+
+    sudo mkdir -p /var/lib/mysql/data
+    sudo restorecon -vFr /var/lib/mysql
+
+The `restorecon` command will associate the type `mysqld_db_t` to
+the `/var/lib/mysql` directory and its subdirectories..
+
+Next, login to the desired container registry:
 
     podman login registry.redhat.io
 
