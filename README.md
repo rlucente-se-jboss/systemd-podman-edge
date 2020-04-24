@@ -37,10 +37,11 @@ data to `/var/lib/mysql/data` on the host. I only want the specific
 class of MariaDB containers to have access to that host directory.
 
 The commands listed in this section are illustrative of what needs
-to be done to generate the custom SELinux policy, but the setup.sh
-script above already uses the existing policy file to enable the
-mariadb container to persist data. If you want to create the SELinux
-policy again, please do the following.
+to be done to generate the custom SELinux policy, but the `setup.sh`
+script above already uses the existing policy file,
+`mariadb_container.cil`, to enable the mariadb container to persist
+data. If you want to create the SELinux policy again, please do the
+following.
 
 First, login to the desired container registry:
 
