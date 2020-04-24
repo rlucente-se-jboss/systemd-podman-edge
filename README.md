@@ -60,7 +60,7 @@ You'll need your [Red Hat customer support portal](https://access.redhat.com)
 credentials to login to the registry. Next, run the mariadb container
 interactively with the `bash` command so that it doesn't error out:
 
-    podman run -v /var/lib/mysql/data:/var/lib/mysql/data -p 3306:3306 -it registry.redhat.io/rhscl/mariadb-102-rhel7:latest bash
+    podman run --env container=podman -v /var/lib/mysql/data:/var/lib/mysql/data:rw -p 3306:3306 -it registry.redhat.io/rhscl/mariadb-102-rhel7:latest bash
 
 In a separate terminal window, inspect the running container image
 and then generate policy for it:
