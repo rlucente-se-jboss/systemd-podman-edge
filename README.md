@@ -71,7 +71,10 @@ The above command works as long as there's only one container
 running. The result is the `mariadb_container.cil` file that's
 already included in this repository.
 
-*NB: The mariadb_container.cil file needed to be tweaked to add
+*NB: The mariadb_container.cil file in this repository was generated
+using an upstream version of udica to address a bug in the permission
+list. If you use the version of udica currently shipping with RHEL
+8, the `mariadb_container.cil` file will need to be tweaked to add
 permissions for this example to work. If you generate the file
 yourself, please compare to what is in this repository.*
 
